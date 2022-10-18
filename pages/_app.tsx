@@ -7,7 +7,7 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit"
 import "./styles.css"
 
 export const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum, chain.polygonMumbai],
   [publicProvider()]
 )
 
@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={client}>
       <RainbowKitProvider chains={chains}>
-        <SessionProvider session={pageProps.session} refetchInterval={0}>
+        <SessionProvider session={pageProps.session} refetchInterval={0} basePath="/api/auth">
           <Component {...pageProps} />
         </SessionProvider>
       </RainbowKitProvider>
